@@ -1,4 +1,4 @@
-name: rutivision package
+name: background_removal_CI
 
 on:
   push:
