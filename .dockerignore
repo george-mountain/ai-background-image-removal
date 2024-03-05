@@ -1,0 +1,11 @@
+**/__pycache__
+
+**/.vscode
+**/.venv
+**/env
+**/.env
+**/.git
+**/.gitignore
+
+LICENSE
+README.md
