@@ -1,0 +1,6 @@
+black
+pylint
+pytest
+flake8
+isort
+pytest-cov
