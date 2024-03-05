@@ -1,0 +1,10 @@
+torch
+torchvision
+pillow
+numpy
+typing
+scikit-image
+huggingface_hub
+fastapi
+python-multipart
+uvicorn[standard]
