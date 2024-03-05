@@ -1,0 +1,65 @@
+version: '3.9'
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx
+    container_name: load_balancer_nginx
+    ports:
+      - 80:80
+    networks:
+      - background_removal_network
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend
+    volumes:
+      - ./backend:/app
+    networks:
+      - background_removal_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    container_name: frontend
+    ports:
+      - 8501:8501
+    volumes:
+      - ./frontend:/app
+    networks:
+      - background_removal_network
+  
+  backend_balance_1:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend_balance_1
+    volumes:
+      - ./backend:/app
+    networks:
+      - background_removal_network
+  
+  backend_balance_2:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend_balance_2
+    volumes:
+      - ./backend:/app
+    networks:
+      - background_removal_network
+
+networks:
+  background_removal_network:
+    driver: bridge
